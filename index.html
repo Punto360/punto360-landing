@@ -81,6 +81,18 @@
   .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
   .chip { background: var(--paper); border: 1px solid var(--border); border-radius: 999px; padding: 9px 18px; font-size: 14px; color: var(--ink); }
 
+  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 780px; margin: 0 auto; }
+  .service-card {
+    background: var(--paper); border: 1px solid var(--border); border-radius: 16px; padding: 26px 22px;
+  }
+  .service-card .ico { font-size: 28px; margin-bottom: 10px; }
+  .service-card h3 { font-size: 17px; margin: 0 0 8px; color: var(--navy-dark); }
+  .service-card p { font-size: 14px; color: var(--muted); margin: 0 0 16px; }
+  .service-card a.mini-cta {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700;
+    color: var(--navy); text-decoration: none; border-bottom: 2px solid var(--green);
+  }
+
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: step; }
   .step { text-align: center; }
   .step .num {
@@ -252,6 +264,27 @@
         <h3>Empezamos en el Valle Medio de Río Negro</h3>
         <p>Punto360 nació en Luis Beltrán y hoy ya trabaja con comercios de la zona. El objetivo es crecer a toda la provincia, negocio por negocio.</p>
         <span class="pin">📍 Luis Beltrán, Río Negro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="otros-servicios">
+  <div class="wrap">
+    <h2 class="section-title">Además de la app, te acompañamos con más</h2>
+    <p class="section-sub">Si tu negocio necesita algo más que registrar ingresos y gastos, también ofrecemos gestión personalizada, aparte de Punto360.</p>
+    <div class="grid2">
+      <div class="service-card">
+        <div class="ico">📋</div>
+        <h3>Gestión de cobranza</h3>
+        <p>Organizamos el seguimiento de lo que te deben tus clientes, para que ninguna cuenta pendiente se te escape.</p>
+        <a class="mini-cta" href="https://wa.me/5492984243289?text=Hola!%20Quiero%20consultar%20por%20gesti%C3%B3n%20de%20cobranza" target="_blank" rel="noopener">Consultar por este servicio →</a>
+      </div>
+      <div class="service-card">
+        <div class="ico">🧾</div>
+        <h3>Gestión de ventas y compras</h3>
+        <p>Llevamos el control de lo que tu negocio compra y vende, con información clara para decidir mejor.</p>
+        <a class="mini-cta" href="https://wa.me/5492984243289?text=Hola!%20Quiero%20consultar%20por%20gesti%C3%B3n%20de%20ventas%20y%20compras" target="_blank" rel="noopener">Consultar por este servicio →</a>
       </div>
     </div>
   </div>
