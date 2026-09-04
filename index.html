@@ -80,8 +80,16 @@
     padding: 10px 18px; border-radius: 999px; font-size: 14px; white-space: nowrap;
     box-shadow: 0 2px 10px rgba(134,194,28,0.35);
     transition: transform .15s ease, box-shadow .15s ease;
+    animation: cta-pulse 2.6s ease-in-out infinite;
   }
-  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(134,194,28,0.45); }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(134,194,28,0.45); animation-play-state: paused; }
+  @keyframes cta-pulse {
+    0%, 100% { box-shadow: 0 2px 10px rgba(134,194,28,0.35); }
+    50% { box-shadow: 0 2px 20px rgba(134,194,28,0.85), 0 0 0 6px rgba(134,194,28,0.14); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-cta { animation: none; }
+  }
 
   /* Eyebrow / kicker */
   .kicker {
@@ -148,13 +156,15 @@
   .notebook-card .nb-head { display:flex; align-items:center; justify-content:space-between; margin-bottom: 14px; }
   .notebook-card .nb-title { font-weight: 800; color: var(--navy-dark); font-size: 15px; }
   .notebook-card .nb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(134,194,28,.18); }
-  .nb-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0 7px 30px; font-size: 14.5px; }
+  .nb-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0 7px 30px; font-size: 14.5px; position: relative; }
+  .nb-row .cat-dot { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; }
   .nb-row .nb-label { color: var(--ink); font-weight: 600; }
   .nb-row .nb-amt { font-weight: 800; white-space: nowrap; }
   .nb-row .nb-amt.in { color: #3b7a0c; }
   .nb-row .nb-amt.out { color: var(--stamp); }
   .nb-total { margin-top: 10px; padding: 14px 16px; background: var(--navy-dark); color: #fff; border-radius: 12px;
     display: flex; justify-content: space-between; align-items: center; font-weight: 800; }
+  .nb-total .trend { color: var(--green); font-size: 12px; font-weight: 800; margin-left: 8px; }
   .nb-total span.hand { color: var(--green); font-size: 20px; }
   .nb-tag {
     position: absolute; top: -14px; right: 18px; background: var(--stamp); color: #fff; font-size: 12px;
@@ -170,6 +180,12 @@
   .card {
     background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 20px;
     text-align: center; box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .18s ease;
+    position: relative;
+  }
+  .new-badge {
+    position: absolute; top: -10px; right: 14px; background: var(--green); color: var(--green-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px; box-shadow: 0 2px 8px rgba(134,194,28,.4);
   }
   .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
   .card .ico {
@@ -400,11 +416,11 @@
           <span class="nb-title">Movimientos del día</span>
           <span class="nb-dot" aria-hidden="true"></span>
         </div>
-        <div class="nb-row"><span class="nb-label">Corte + barba</span><span class="nb-amt in">+ $6.500</span></div>
-        <div class="nb-row"><span class="nb-label">Insumos peluquería</span><span class="nb-amt out">− $4.200</span></div>
-        <div class="nb-row"><span class="nb-label">Tintura</span><span class="nb-amt in">+ $9.000</span></div>
-        <div class="nb-row"><span class="nb-label">Alquiler cancha 19hs</span><span class="nb-amt in">+ $12.000</span></div>
-        <div class="nb-total"><span>Balance de hoy</span> <span class="hand">$23.300</span></div>
+        <div class="nb-row"><span class="cat-dot" style="background:var(--blue)"></span><span class="nb-label">Corte + barba</span><span class="nb-amt in">+ $6.500</span></div>
+        <div class="nb-row"><span class="cat-dot" style="background:var(--medida-gold)"></span><span class="nb-label">Insumos peluquería</span><span class="nb-amt out">− $4.200</span></div>
+        <div class="nb-row"><span class="cat-dot" style="background:var(--stamp)"></span><span class="nb-label">Tintura</span><span class="nb-amt in">+ $9.000</span></div>
+        <div class="nb-row"><span class="cat-dot" style="background:var(--green)"></span><span class="nb-label">Alquiler cancha 19hs</span><span class="nb-amt in">+ $12.000</span></div>
+        <div class="nb-total"><span>Balance de hoy <span class="trend">▲ 12%</span></span> <span class="hand">$23.300</span></div>
       </div>
     </div>
   </div>
@@ -474,11 +490,23 @@
 </section>
 
 <section class="tint">
+  <div class="center-kicker"><div class="kicker">Novedades</div></div>
+  <h2 class="section-title">Punto360 no para de crecer</h2>
+  <p class="section-sub">Estas funciones ya están en producción — las usás hoy mismo, sin actualizar nada.</p>
+  <div class="grid4">
+    <div class="card"><span class="new-badge">Nuevo</span><div class="ico">🌙</div><h3>Modo oscuro</h3><p>Cambiá el look de la app a un toque, para cuidar la vista de noche.</p></div>
+    <div class="card"><span class="new-badge">Nuevo</span><div class="ico">👥</div><h3>Multi-usuario</h3><p>Hasta 6 personas cargando movimientos en el mismo negocio, cada una con su nombre.</p></div>
+    <div class="card"><span class="new-badge">Nuevo</span><div class="ico">🎨</div><h3>Color por categoría</h3><p>De un vistazo sabés si este mes fue mejor o peor que el anterior.</p></div>
+    <div class="card"><span class="new-badge">Nuevo</span><div class="ico">📊</div><h3>Informe por categoría</h3><p>Ideal para clubes y comisiones: mirá cuánto recaudaste por rubro en un clic.</p></div>
+  </div>
+</section>
+
+<section class="tint">
   <h2 class="section-title">Precio simple, sin letra chica</h2>
   <p class="section-sub">Un plan simple, sin letra chica. Sin permanencia forzada.</p>
   <div class="price-card">
     <span class="tag">Oferta de lanzamiento</span>
-    <div class="old">$10.000 /mes</div>
+    <div class="old">$10.500 /mes</div>
     <div class="amount">$9.500 <small>ARS / mes</small></div>
     <ul>
       <li>✔ Movimientos y categorías ilimitadas</li>
